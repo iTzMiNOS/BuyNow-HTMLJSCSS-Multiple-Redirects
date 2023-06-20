@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown with Link Redirection</title>
+    <style>
+      #button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }#dropdown {
+        width: 250px;
+        font-size: 16px;
+        padding: 8px;
+      }#button-container {
+        display: flex;
+        align-items: center;
+      }
+      #button-container span {
+        margin-right: 10px;
+      }
+      #button {
+        font-size: 18px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <select id="dropdown">
+      <option value="">Choose Your Plan</option>
+      <option value="#" data-text="Buy Now, 119.99$ 2̶0̶0̶$̶ ">3 Months</option>
+      <option value="#" data-text="Buy Now, 209.99$ 2̶4̶0̶$̶ ">6 Months</option>
+      <option value="#" data-text="Buy Now, 389.99$ 4̶8̶0̶$̶ ">12 Months</option>
+      <option value="#" data-text="Buy Now, 679.99$ 1̶1̶0̶0̶$̶ ">Lifetime</option>
+    </select>
+    <button id="button" disabled>Buy Now</button>
+    <script>
+      var dropdown = document.getElementById("dropdown");
+      var button = document.getElementById("button");
+
+      dropdown.addEventListener("change", function() {
+        button.innerText = dropdown.options[dropdown.selectedIndex].getAttribute("data-text");
+        button.disabled = dropdown.value === "";
+      });
+
+      button.addEventListener("click", function() {
+        if (dropdown.value !== "") {
+          window.location.href = dropdown.value;
+        }
+      });
+    </script>
+  </body>
+</html>
